@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: yellow;
+  font-family: Helvetica, sans-serif;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: red;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid blue;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+  left: 31px;
+  }
+  
+  /* Full-width containers */
+  .container {
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+  }
+  
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+  left: 60px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+  left: 15px;
+  }
+  
+  /* Make all right containers behave like the left ones */
+  .right {
+  left: 0%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="timeline">
+  <div class="container left">
+    <div class="content">
+      <h2>DIC 2015</h2>
+      <p>Oposición gana la mayoría calificada de 3/5 partes de la Asamblea Nacional (AN) con una participación del <strong>75% del censo electoral</strong>. <a href="https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Venezuela_de_2015">Elecciones parlamentarias wikipedia</a></p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>DIC 2015</h2>
+      <p>La Asamblea Nacional saliente en su mayoría chavista nombra fuera de plazo a los nuevos magistrados del Tribunal Supremo de Justicia (TSJ) antes de entregar el poder a la oposición.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>2016</h2>
+      <p>El TSJ chavista declara nula  todas las actuaciones de la Asamblea Nacional opositora.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>ABR 2017</h2>
+      <p>TSJ se concede a sí misma la facultad de ejercer las funciones de la Asamblea <a href="https://es.wikipedia.org/wiki/Crisis_institucional_de_Venezuela" target="_blank"></a>Crisis institucional wikipedia.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>JUN 2017</h2>
+      <p>Maduro convoca a una constituyente y cambia la constitución sin realizar un referendum previo porque el TSJ considera que no es necesario ni constitucionalmente obligante.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>JUL 2017</h2>
+      <p>Maduro convoca a elecciones para escoger a los parlamentarios de una Asamblea Nacional Constituyente para sustituir la Asamblea opositora. La oposición claramente no se presenta esas elecciones.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>30 JUL 2017</h2>
+      <p>Maduro consigue el 99.8% de la Asamblea Constituyente (la oposición no se presento) y sólo votó el 30% del censo electoral. Recordemos que la Asamblea Nacional opositora fue escogida con un 75%.¿Cuál cree usted que es la que tienes más validez? <a href="https://es.wikipedia.org/wiki/Asamblea_Nacional_Constituyente_de_Venezuela_de_2017" target="_blank">Asamblea Nacional Constituyente wikipedia</a>.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>AGO 2017</h2>
+      <p>Smartmatic (empresa que gestionaba las máquinas de votación) se va de Venezuela y declaró públicamente que el Consejo Nacional Electoral había anunciado resultados diferentes a los reflejados por el sistema de votación.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>FEB 2018</h2>
+      <p>La Asamblea Nacional Constituyente emitió un decreto que ordenó al CNE organizar las presidenciales fuera de plazo en el mes de abril.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>FEB 2018</h2>
+      <p>Oposición dice que no acudirá a unas elecciones fraudulentas con unas máquinas que pueden cambiar los resultados a su antojo.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>Abril 2018</h2>
+      <p>Maduro consigue que Henri Falcón (candidato que pertenecía a la oposición) se presente contra él para darle cierta validez a su reelección.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>Mayo 2018</h2>
+      <p>Maduro es reelegido con un 46% de participación supuestamente (datos proveídos por el gobierno sin Smartmatic).</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>Mayo 2018</h2>
+      <p>La mayoría de la comunidad internacional no reconoce a maduro entre ellos España. <a href="https://es.wikipedia.org/wiki/Elecciones_presidenciales_de_Venezuela_de_2018#Lista_de_pa%C3%ADses_que_no_reconocen_las_elecciones" target="_blank">Países que no reconocen a Maduro wikipedia</a>.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>10 ENE 2019</h2>
+      <p>Maduro retraso jurar el cargo para el nuevo período presidencial porque sabe lo que se le viene encima.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>23 ENE 2019</h2>
+      <p>Apegándose a los artículos 333, 350 y 233 de la Constitución, el presidente de la Asamblea Nacional (que fue electa con el 70% del censo) asume la presidencia de Venezuela para lograr el cese de la usurpación de Maduro.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
